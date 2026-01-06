@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificación de Certificado</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 40px;
+            text-align: center;
+        }
+        .contenedor {
+            background: white;
+            max-width: 520px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+        }
+        .empresa {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .tipo {
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+        button {
+            padding: 12px 22px;
+            font-size: 16px;
+            background: #004aad;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .datos {
+            margin-top: 25px;
+            display: none;
+            font-size: 18px;
+            text-align: left;
+        }
+        .linea {
+            margin: 12px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="empresa" id="empresa"></div>
+    <div class="tipo" id="tipo"></div>
+
+    <button onclick="mostrarDatos()">Ver información</button>
+
+    <div class="datos" id="datos">
+        <div class="linea">
+            <strong>N° Certificado:</strong>
+            <span id="certificado"></span>
+        </div>
+        <div class="linea">
+            <strong>Placa del vehículo:</strong>
+            <span id="placa"></span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    const empresa = params.get("empresa");
+    const tipo = params.get("tipo");
+    const cert = params.get("cert");
+    const placa = params.get("placa");
+
+    // Mostrar encabezado automáticamente
+    document.getElementById("empresa").textContent =
+        empresa ?? "Entidad certificadora";
+    document.getElementById("tipo").textContent =
+        tipo ?? "Tipo de certificado";
+
+    function mostrarDatos() {
+        document.getElementById("certificado").textContent =
+            cert ?? "No disponible";
+        document.getElementById("placa").textContent =
+            placa ?? "No disponible";
+        document.getElementById("datos").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
