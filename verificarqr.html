@@ -13,7 +13,7 @@
         }
         .contenedor {
             background: white;
-            max-width: 520px;
+            max-width: 550px;
             margin: auto;
             padding: 35px;
             border-radius: 10px;
@@ -22,12 +22,11 @@
         .empresa {
             font-size: 20px;
             font-weight: bold;
-            margin-bottom: 10px;
             text-transform: uppercase;
         }
         .tipo {
-            font-size: 17px;
-            margin-bottom: 25px;
+            font-size: 16px;
+            margin: 15px 0 25px 0;
         }
         button {
             padding: 12px 22px;
@@ -37,6 +36,7 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
+            margin: 8px;
         }
         .datos {
             margin-top: 25px;
@@ -45,7 +45,7 @@
             text-align: left;
         }
         .linea {
-            margin: 12px 0;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -58,6 +58,7 @@
     <div class="tipo" id="tipo"></div>
 
     <button onclick="mostrarDatos()">Ver información</button>
+    <button onclick="verPDF()">Ver documento PDF</button>
 
     <div class="datos" id="datos">
         <div class="linea">
@@ -79,8 +80,8 @@
     const tipo = params.get("tipo");
     const cert = params.get("cert");
     const placa = params.get("placa");
+    const pdf = params.get("pdf");
 
-    // Mostrar encabezado automáticamente
     document.getElementById("empresa").textContent =
         empresa ?? "Entidad certificadora";
     document.getElementById("tipo").textContent =
@@ -93,7 +94,16 @@
             placa ?? "No disponible";
         document.getElementById("datos").style.display = "block";
     }
+
+    function verPDF() {
+        if (pdf) {
+            window.open(pdf, "_blank");
+        } else {
+            alert("Documento PDF no disponible");
+        }
+    }
 </script>
 
 </body>
 </html>
+
